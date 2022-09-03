@@ -8,6 +8,8 @@ export default createStore({
     career: null,
     podcasts: null,
     podcast: null,
+    posts: null,
+    post: null,
     subscription: null,
     token: null,
   },
@@ -34,6 +36,12 @@ export default createStore({
     setPodcast(state, podcast) {
       state.podcast = podcast;
     },
+    setPosts(state, posts){
+      state.posts = posts;
+    },
+    setPost(state, post){
+      state.post = post;
+    }
   },
   actions: {
     //Register, Login & Verification
@@ -107,16 +115,10 @@ export default createStore({
     },
 
     getPodcasts: async (context) => {
-      const pod = await fetch("https://wyze-up.herokuapp.com/Podcasts")
-        .then((res) => res.json())
-        .then((data) => {
-          return data.results;
-        });
-      if (data.results == null) {
-        console.log("Unfortunately there are no podcasts available 🎤🚫");
-      } else {
-        context.commit("setPodcasts", pod);
-      }
+      const res = await fetch("https://wyze-up.herokuapp.com/Podcasts")
+      const podcast = await res.json();
+      console.log(podcast);
+        context.commit("setPodcasts", podcast);
     },
     getPodcast: async (context, id) => {
       fetch("https://wyze-up.herokuapp.com/Podcasts/" + id)
@@ -124,6 +126,33 @@ export default createStore({
         .then((data) => (this.podcasts = data))
         .catch((err) => context.commit("setPodcast", podcast));
     },
+    getPosts: async (context) => {
+      const posts = await fetch("https://wyze-up.herokuapp.com/Posts")
+      const posted = await posts.json();
+      console.log(posted);
+      context.commit("setPosts", posted);
+    },
+    getPost: async(context, id) => {
+      fetch("https://wyze-up.herokuapp.com/Posts/" + id)
+      .then((res) => res.json())
+      .then((data) => (this.posts = data))
+      .catch((err) => context.commit("setPost", post));
+    },
+    newPost: async (context, posted) => {
+      fetch("https://wyze-up.herokuapp.com/Posts", {
+        method: "POST",
+        body: JSON.stringify({
+          postTitle: posted.postTitle,
+          postDescription: posted.postDescription,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => context.commit("post", json));
+      console.log(posted);
+    }
   },
 
   modules: {},

@@ -48,4 +48,14 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
+
+#podcasts .pod-Box{
+  border: 1px solid black;
+  padding: 10px;
+}
+.pod-Box .card{
+  border: 1px solid black;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
 </style>

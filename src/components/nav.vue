@@ -20,8 +20,8 @@
           >
         </li>
         <li>
-          <router-link to="/News">
-            <font-awesome-icon icon="compass" />News</router-link
+          <router-link to="/CommunityTab">
+            <font-awesome-icon icon="compass" />Community Tab</router-link
           >
         </li>
         <li>
