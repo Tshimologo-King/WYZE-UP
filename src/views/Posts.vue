@@ -84,7 +84,7 @@ export default {
         postDescription: this.postDescription,
       };
       return this.$store.dispatch("newPost", addNew);
-      
+
     },
   },
   component: {
@@ -92,18 +92,12 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getPosts");
-    this.$store.dispatch("getPost");
+    // this.$store.dispatch("getPost");
   },
   computed: {
     posts() {
       return this.$store.state.posts;
     },
-    post() {
-      return this.$store.state.post;
-    },
-    user() {
-      return this.$store.state.user;
-    }
   },
 };
 </script>

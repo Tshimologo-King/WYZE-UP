@@ -42,6 +42,11 @@ const routes = [
     name: "communityTab",
     component: () => import("../views/Posts.vue"),
   },
+  {
+    path: "/CommunityTab/:id",
+    name: "Posts",
+    component: () => import("../components/posts.vue"),
+  },
 ];
 
 const router = createRouter({

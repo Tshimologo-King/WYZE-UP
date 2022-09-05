@@ -127,23 +127,25 @@ export default createStore({
         .catch((err) => context.commit("setPodcast", podcast));
     },
     getPosts: async (context) => {
-      const res = await fetch("https://wyze-up.herokuapp.com/Posts");
-      const posted = await res.json();
-      console.log(posted);
-      context.commit("setPosts", posted);
+      const res = await fetch("https://wyze-up.herokuapp.com/Posts")
+      const posts = await res.json();
+      console.log(posts);
+      context.commit("setPosts", posts);
     },
-    getPost: async (context, id) => {
-      fetch("https://wyze-up.herokuapp.com/Posts/" + id)
-        .then((res) => res.json())
-        .then((data) => (this.posts = data))
-        .catch((err) => context.commit("setPost", post));
-    },
-    newPost: async (context, posted) => {
-      fetch("https://wyze-up.herokuapp.com/Posts", {
+    // getPost: async (context, id) => {
+    //   fetch("https://wyze-up.herokuapp.com/Posts/" + id)
+    //     .then((res) => res.json())
+    //     .then((data) => (this.posts = data))
+    //     .catch((err) => context.commit("setPost", post));
+    // },
+    newPost: async (context, payload) => {
+      fetch("https://wyze-up.herokuapp.com/Posts",{
+        mode: "cors",
         method: "POST",
         body: JSON.stringify({
-          postTitle: posted.postTitle,
-          postDescription: posted.postDescription,
+          postTitle: payload.postTitle,
+          postDescription: payload.postDescription,
+          postDate: payload.postDate,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -151,7 +153,7 @@ export default createStore({
       })
         .then((response) => response.json())
         .then((json) => context.commit("posts", json));
-      console.log(posted);
+      console.log(payload);
     },
   },
 
