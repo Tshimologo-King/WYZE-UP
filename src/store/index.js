@@ -133,7 +133,7 @@ export default createStore({
       context.commit("setPosts", posted);
     },
     getPost: async (context, id) => {
-      fetch("https://wyze-up.herokuapp.com/Posts" + id)
+      fetch("https://wyze-up.herokuapp.com/Posts/" + id)
         .then((res) => res.json())
         .then((data) => (this.posts = data))
         .catch((err) => context.commit("setPost", post));
