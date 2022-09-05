@@ -36,12 +36,12 @@ export default createStore({
     setPodcast(state, podcast) {
       state.podcast = podcast;
     },
-    setPosts(state, posts){
+    setPosts(state, posts) {
       state.posts = posts;
     },
-    setPost(state, post){
+    setPost(state, post) {
       state.post = post;
-    }
+    },
   },
   actions: {
     //Register, Login & Verification
@@ -115,10 +115,10 @@ export default createStore({
     },
 
     getPodcasts: async (context) => {
-      const res = await fetch("https://wyze-up.herokuapp.com/Podcasts")
+      const res = await fetch("https://wyze-up.herokuapp.com/Podcasts");
       const podcast = await res.json();
       console.log(podcast);
-        context.commit("setPodcasts", podcast);
+      context.commit("setPodcasts", podcast);
     },
     getPodcast: async (context, id) => {
       fetch("https://wyze-up.herokuapp.com/Podcasts/" + id)
@@ -127,16 +127,16 @@ export default createStore({
         .catch((err) => context.commit("setPodcast", podcast));
     },
     getPosts: async (context) => {
-      const posts = await fetch("https://wyze-up.herokuapp.com/Posts")
-      const posted = await posts.json();
+      const res = await fetch("https://wyze-up.herokuapp.com/Posts");
+      const posted = await res.json();
       console.log(posted);
       context.commit("setPosts", posted);
     },
-    getPost: async(context, id) => {
+    getPost: async (context, id) => {
       fetch("https://wyze-up.herokuapp.com/Posts/" + id)
-      .then((res) => res.json())
-      .then((data) => (this.posts = data))
-      .catch((err) => context.commit("setPost", post));
+        .then((res) => res.json())
+        .then((data) => (this.posts = data))
+        .catch((err) => context.commit("setPost", post));
     },
     newPost: async (context, posted) => {
       fetch("https://wyze-up.herokuapp.com/Posts", {
@@ -152,7 +152,7 @@ export default createStore({
         .then((response) => response.json())
         .then((json) => context.commit("post", json));
       console.log(posted);
-    }
+    },
   },
 
   modules: {},

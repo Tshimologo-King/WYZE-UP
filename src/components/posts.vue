@@ -23,7 +23,6 @@
 <script>
 export default {
     name: "Post",
-    props: ["post"],
     data (){
       return {
         
