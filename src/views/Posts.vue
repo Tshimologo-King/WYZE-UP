@@ -43,6 +43,7 @@
         <div class="card">
           <div class="content-head">
             <h3>{{ post.userName }}</h3>
+            <h3>{{post.idUsers}}</h3>
             <img
               :src="post.userImage"
               :alt="`${post.userName}`"
@@ -54,7 +55,6 @@
               ><h5>{{ post.postTitle }}</h5></strong
             >
             <p>{{ post.postDescription }}</p>
-            <p class="dateTime">{{ post.postDate }}</p>
           </div>
         </div>
       </div>
@@ -72,34 +72,39 @@ export default {
       showModal: false,
       postTitle: "",
       postDescription: "",
+      userName: "",
+      idUsers: "",
     }; 
    },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
     },
-    addNewPost() {
-      const addNew = {
+     async addNewPost() {
+      this.$store.dispatch("newPost", {
+        idPosts: this.$route.params.id,
         postTitle: this.postTitle,
         postDescription: this.postDescription,
-      };
-      return this.$store.dispatch("newPost", addNew);
-
-    },
+        userName: this.$store.state.user,
+        idUsers: this.$store.state.user
+      });
   },
   component: {
     posts,
   },
   mounted() {
-    this.$store.dispatch("getPosts");
+    this.$store.dispatch("getPost", this.$route.params.id);
     // this.$store.dispatch("getPost");
   },
   computed: {
-    posts() {
-      return this.$store.state.posts;
+    post() {
+      return this.$store.state.post;
     },
-  },
-};
+
+  },},
+}
+
+
 </script>
 
 <style scoped>

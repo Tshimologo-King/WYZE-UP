@@ -57,24 +57,28 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
 
+
+
 #careerCards {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   height: 100%;
   /* margin: auto; */
   width: 100%;
+  background: blue;
   padding: 2%;
-  background-color: lightblue;
+  border: 1px solid black;
   overflow: hidden;
 }
 
 .card {
-  width: 40vw;
+  display: flex;
+  justify-content: center;
+  width: 400px;
   perspective: 500px;
   margin-inline: auto;
-  margin: 10px;
-  padding: 20px;
-  margin-left: 2rem;
+  padding: 10px;
 }
 
 .content {
@@ -89,12 +93,14 @@ export default {
   transform: rotateY(180deg);
   transition: linear 1s;
   height: 500px;
+  width: 100%;
 }
 .career-box {
   height: 100%;
   width: 100vw;
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 .infobox {
   overflow-y: scroll;
@@ -127,6 +133,7 @@ export default {
   color: white;
   transform: rotateY(180deg);
   padding: 20px;
+  width: 300px;
 }
 .back p {
   display: flex;

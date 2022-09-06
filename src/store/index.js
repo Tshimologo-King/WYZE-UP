@@ -127,32 +127,33 @@ export default createStore({
         .catch((err) => context.commit("setPodcast", podcast));
     },
     getPosts: async (context) => {
-      const res = await fetch("https://wyze-up.herokuapp.com/Posts")
+      const res = await fetch("https://wyze-up.herokuapp.com/Posts");
       const posts = await res.json();
       console.log(posts);
       context.commit("setPosts", posts);
     },
-    // getPost: async (context, id) => {
-    //   fetch("https://wyze-up.herokuapp.com/Posts/" + id)
-    //     .then((res) => res.json())
-    //     .then((data) => (this.posts = data))
-    //     .catch((err) => context.commit("setPost", post));
-    // },
+    getPost: async (context, id) => {
+      fetch("https://wyze-up.herokuapp.com/Posts/" + id)
+        .then((res) => res.json())
+        .then((data) => (this.posts = data))
+        .catch((err) => context.commit("setPost", post));
+    },
     newPost: async (context, payload) => {
-      fetch("https://wyze-up.herokuapp.com/Posts",{
-        mode: "cors",
+      fetch("https://wyze-up.herokuapp.com/Posts/", {
+        mode: "no-cors",
         method: "POST",
         body: JSON.stringify({
           postTitle: payload.postTitle,
           postDescription: payload.postDescription,
-          postDate: payload.postDate,
+          userName: payload.userName,
+          idUser: this.idUsers
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
       })
         .then((response) => response.json())
-        .then((json) => context.commit("posts", json));
+        .then((json) => context.commit("setPost", json));
       console.log(payload);
     },
   },
