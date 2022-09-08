@@ -38,14 +38,14 @@ const routes = [
     component: () => import("../views/Podcasts.vue"),
   },
   {
-    path: "/CommunityTab",
-    name: "communityTab",
-    component: () => import("../views/Posts.vue"),
+    path: "/Podcasts/:id",
+    name: "podcasts",
+    component: () => import("../components/podcast.vue"),
   },
   {
-    path: "/CommunityTab/:id",
-    name: "Posts",
-    component: () => import("../components/posts.vue"),
+    path: "/Users",
+    name: "Users",
+    component: () => import("../views/Users.vue"),
   },
 ];
 

@@ -8,17 +8,15 @@ export default createStore({
     career: null,
     podcasts: null,
     podcast: null,
-    posts: null,
-    post: null,
     subscription: null,
     token: null,
   },
   getters: {},
   mutations: {
-    user(state, user) {
+    setUSER(state, user) {
       state.user = user;
     },
-    users(state, users) {
+    setUSERS(state, users) {
       state.users = users;
     },
     token(state, token) {
@@ -35,12 +33,6 @@ export default createStore({
     },
     setPodcast(state, podcast) {
       state.podcast = podcast;
-    },
-    setPosts(state, posts) {
-      state.posts = posts;
-    },
-    setPost(state, post) {
-      state.post = post;
     },
   },
   actions: {
@@ -93,6 +85,24 @@ export default createStore({
         alert(data);
       }
     },
+    getUSERS: async (context) => {
+      const response = await fetch("https://wyze-up.herokuapp.com/Users")
+        .then((res) => res.json())
+        .then((data) => {
+          return data.results;
+        });
+      if (!response.length || response == null) {
+        console.log("No USERS Found");
+      } else {
+        context.commit("setUSERS", response);
+      }
+    },
+    getUSER: async (context, id) => {
+      fetch("https://wyze-up.herokuapp.com/Users/" + id)
+        .then((res) => res.json())
+        .then((data) => context.commit("setUSER", data))
+        .catch((err) => console.log(err.message));
+    },
 
     //Careers, Posts, Articles, Podcasts, User Profiles (Single View included)
     getCareers: async (context) => {
@@ -110,14 +120,13 @@ export default createStore({
     getCareer: async (context, id) => {
       fetch("https://wyze-up.herokuapp.com/Careers/" + id)
         .then((res) => res.json())
-        .then((data) => (this.careers = data))
-        .catch((err) => context.commit("setCareer", career));
+        .then((data) => context.commit("setCareer", data))
+        .catch((err) => console.log(err.message));
     },
 
     getPodcasts: async (context) => {
       const res = await fetch("https://wyze-up.herokuapp.com/Podcasts");
       const podcast = await res.json();
-      console.log(podcast);
       context.commit("setPodcasts", podcast);
     },
     getPodcast: async (context, id) => {
@@ -127,16 +136,18 @@ export default createStore({
         .catch((err) => context.commit("setPodcast", podcast));
     },
     getPosts: async (context) => {
-      const res = await fetch("https://wyze-up.herokuapp.com/Posts");
-      const posts = await res.json();
-      console.log(posts);
+      const res = await fetch("https://wyze-up.herokuapp.com/Posts")
+        .then((res) => res.json())
+        .then((data) => {
+          return data.results;
+        });
       context.commit("setPosts", posts);
     },
     getPost: async (context, id) => {
       fetch("https://wyze-up.herokuapp.com/Posts/" + id)
         .then((res) => res.json())
-        .then((data) => (this.posts = data))
-        .catch((err) => context.commit("setPost", post));
+        .then((data) => context.commit("setPost", data))
+        .catch((err) => console.log(err.message));
     },
     newPost: async (context, payload) => {
       fetch("https://wyze-up.herokuapp.com/Posts/", {
@@ -146,7 +157,7 @@ export default createStore({
           postTitle: payload.postTitle,
           postDescription: payload.postDescription,
           userName: payload.userName,
-          idUser: this.idUsers
+          idUser: this.idUsers,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
