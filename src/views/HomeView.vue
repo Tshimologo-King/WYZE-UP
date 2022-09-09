@@ -1,20 +1,16 @@
-
 <template>
   <div class="container">
-    <h2>Welcome To WYZE UP</h2>
-
     <section id="about">
       <div class="container">
         <h1 class="aboutus">WYZE UP</h1>
         <div class="row">
           <div class="col-md-6" id="bio">
             <img src="https://picsum.photos/200/300?random=1" />
-            <h3>Founder: Tshimologo King Mabena</h3>
-            <h4>Company: WYZE UP</h4>
-            <h5>Divison of KINGDOM</h5>
+            <h4>Founder: Tshimologo King Mabena</h4>
+            <h4>Company: Kingdom</h4>
           </div>
           <div class="col-md-6" id="description">
-            <h2>who we are</h2>
+            <h2>Who We Are</h2>
             <p>
               ORIGIN: Founded 2019, in Belhar Cape Town. We are the Youngins,
               Families, Brothers, Sisters, Nieces, Nephews, Aunties, Uncles,
@@ -29,7 +25,7 @@
               passion is unrealised, pressures of fulfilling family
               responsibilites.
             </p>
-            <h2>why we do it</h2>
+            <h2>Why We Do It</h2>
             <p>
               Since The Founder was a College Dropout, he saw that he is not the
               only one that felt out of place within society, he wanted to
@@ -44,7 +40,7 @@
               of knowledge to succeed. Our Vision is to be the center for the
               Youth to unlock their Unlimited Potenial across Africa.
             </p>
-            <h2>how we do it</h2>
+            <h2>How We Do It</h2>
             <p>
               We dissect each and every industry and the various sectors within
               them, and produce the relevant roles of the different careers from
@@ -254,9 +250,18 @@ export default {};
   display: flex;
   justify-content: space-evenly;
   align-content: center;
+  flex-wrap: wrap;
 }
 #bio {
   width: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#bio img {
+  height: 400px;
 }
 .aboutus {
   display: flex;
@@ -377,5 +382,32 @@ export default {};
   height: 50vh;
   overflow: hidden;
   padding: 20px;
+}
+@media only screen and (max-width:1200px){
+  #about{
+    display: flex;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .aboutus h1 {
+    margin-inline: auto;
+  }
+  #about {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  #bio{
+    overflow: hidden;
+  }
+  #bio img {
+    width: 450px;
+    height: 450px;
+    margin-inline: auto;
+  }
+  #bio h4 {
+    font-size: 16px;
+    margin-inline: auto;
+  }
 }
 </style>

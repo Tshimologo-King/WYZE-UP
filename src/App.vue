@@ -6,7 +6,7 @@
 <script>
 import login from "./components/Login.vue";
 import register from "./components/Register.vue";
-import admin from "./components/adminDashboard.vue";
+import admin from "./views/adminDashboard.vue";
 import Nav from "./components/nav.vue";
 
 export default {

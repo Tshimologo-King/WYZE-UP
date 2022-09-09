@@ -6,9 +6,8 @@ export default createStore({
     users: null,
     careers: null,
     career: null,
-    podcasts: null,
-    podcast: null,
-    subscription: null,
+    subscribers: null,
+    subscriber: null,
     token: null,
   },
   getters: {},
@@ -28,11 +27,11 @@ export default createStore({
     setCareer(state, career) {
       state.career = career;
     },
-    setPodcasts(state, podcasts) {
-      state.podcasts = podcasts;
+    setSubscribers(state, subscribers) {
+      state.subscribers = subscribers;
     },
-    setPodcast(state, podcast) {
-      state.podcast = podcast;
+    setSubscriber(state, subscriber) {
+      state.subscriber = subscriber;
     },
   },
   actions: {
@@ -54,7 +53,6 @@ export default createStore({
         .then((json) => context.commit("user", json));
       console.log(payload);
     },
-
     login: async (context, payload) => {
       let response = await fetch("https://wyze-up.herokuapp.com/users/login", {
         method: "POST",
@@ -85,17 +83,13 @@ export default createStore({
         alert(data);
       }
     },
+
+    //Get Users and single id
     getUSERS: async (context) => {
-      const response = await fetch("https://wyze-up.herokuapp.com/Users")
+      fetch("https://wyze-up.herokuapp.com/Users")
         .then((res) => res.json())
-        .then((data) => {
-          return data.results;
-        });
-      if (!response.length || response == null) {
-        console.log("No USERS Found");
-      } else {
-        context.commit("setUSERS", response);
-      }
+        .then((data) => context.commit("setUSERS", data))
+        .catch((err) => console.log(err.message));
     },
     getUSER: async (context, id) => {
       fetch("https://wyze-up.herokuapp.com/Users/" + id)
@@ -104,68 +98,40 @@ export default createStore({
         .catch((err) => console.log(err.message));
     },
 
-    //Careers, Posts, Articles, Podcasts, User Profiles (Single View included)
+    //Careers (Single View included)
     getCareers: async (context) => {
-      const response = await fetch("https://wyze-up.herokuapp.com/Careers")
-        .then((res) => res.json())
-        .then((data) => {
-          return data.results;
-        });
-      if (!response.length || response == null) {
+      const response = await fetch("https://wyze-up.herokuapp.com/Careers");
+      const { results } = await response.json();
+      if (results == undefined || results == null) {
         console.log("No Careers Available😢");
       } else {
-        context.commit("setCareers", response);
+        context.commit("setCareers", results);
       }
     },
     getCareer: async (context, id) => {
       fetch("https://wyze-up.herokuapp.com/Careers/" + id)
         .then((res) => res.json())
-        .then((data) => context.commit("setCareer", data))
-        .catch((err) => console.log(err.message));
-    },
-
-    getPodcasts: async (context) => {
-      const res = await fetch("https://wyze-up.herokuapp.com/Podcasts");
-      const podcast = await res.json();
-      context.commit("setPodcasts", podcast);
-    },
-    getPodcast: async (context, id) => {
-      fetch("https://wyze-up.herokuapp.com/Podcasts/" + id)
-        .then((res) => res.json())
-        .then((data) => (this.podcasts = data))
-        .catch((err) => context.commit("setPodcast", podcast));
-    },
-    getPosts: async (context) => {
-      const res = await fetch("https://wyze-up.herokuapp.com/Posts")
-        .then((res) => res.json())
         .then((data) => {
-          return data.results;
-        });
-      context.commit("setPosts", posts);
-    },
-    getPost: async (context, id) => {
-      fetch("https://wyze-up.herokuapp.com/Posts/" + id)
-        .then((res) => res.json())
-        .then((data) => context.commit("setPost", data))
+          context.commit("setCareer", data.results);
+        })
         .catch((err) => console.log(err.message));
     },
-    newPost: async (context, payload) => {
-      fetch("https://wyze-up.herokuapp.com/Posts/", {
-        mode: "no-cors",
-        method: "POST",
-        body: JSON.stringify({
-          postTitle: payload.postTitle,
-          postDescription: payload.postDescription,
-          userName: payload.userName,
-          idUser: this.idUsers,
-        }),
+    getSubscribers: async (context) => {
+      fetch("https://wyze-up.herokuapp.com/subscribers", {
+        method: "GET",
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
+          "Content-Type": "application/json",
         },
       })
-        .then((response) => response.json())
-        .then((json) => context.commit("setPost", json));
-      console.log(payload);
+        .then((res = res.json()))
+        .then((data) => context.commit("setSubscribers", data))
+        .catch((err) => console.log(err.message));
+    },
+    getSubscriber: async (context, id) => {
+      fetch("https://wyze-up.herokuapp.com/subscribers/" + id)
+        .then((res) => res.json())
+        .then((data) => context.commit("setSubscriber", data))
+        .catch((err) => console.log(err.message));
     },
   },
 

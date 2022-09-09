@@ -2,9 +2,9 @@
   <h1>Find Your Career</h1>
   <div v-if="careers" id="careers">
     <div class="career-box">
-      <div v-for="career in careers" :key="career.idCareers">
+      <div v-for="career in careers" :key="career.idCareers" class="career">
         <router-link
-          :to="{ name: 'career', params: { id: this.careers.idCareers } }"
+          :to="{ name: 'singleCareer', params: { id: career.idCareers } }"
         >
           <div id="careerCards">
             <div class="newPost">
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import singleCareerComp from "@/components/singleCareerComp.vue";
 export default {
   name: "careers",
   data() {
@@ -64,6 +65,9 @@ export default {
     careers() {
       return this.$store.state.careers;
     },
+  },
+  component: {
+    singleCareerComp,
   },
 };
 </script>

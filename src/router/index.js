@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import Podcasts from "../views/Podcasts.vue";
 import AboutView from "../views/Careers.vue";
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
-import adminDashboard from "../components/adminDashboard.vue";
-
+import adminDashboard from "../views/adminDashboard.vue";
+import singleCareer from "../views/singleCareer";
+import singleCareerComp from "../components/singleCareerComp";
+import singleUsers from "../components/singleUsers";
 const routes = [
   {
     path: "/",
@@ -14,8 +15,13 @@ const routes = [
   },
   {
     path: "/Careers",
-    name: "career",
+    name: "careers",
     component: () => import("../views/Careers.vue"),
+  },
+  {
+    path: "/singleCareerComp",
+    name: "singleCareerComp",
+    component: () => import("../components/singleCareerComp.vue"),
   },
   {
     path: "/Login",
@@ -30,22 +36,23 @@ const routes = [
   {
     path: "/adminDashboard",
     name: "adminDashboard",
-    component: () => import("../components/adminDashboard.vue"),
+    component: () => import("../views/adminDashboard.vue"),
   },
   {
-    path: "/Podcasts",
-    name: "podcasts",
-    component: () => import("../views/Podcasts.vue"),
-  },
-  {
-    path: "/Podcasts/:id",
-    name: "podcasts",
-    component: () => import("../components/podcast.vue"),
-  },
-  {
-    path: "/Users",
-    name: "Users",
+    path: "/users",
+    name: "users",
     component: () => import("../views/Users.vue"),
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: () => import("../components/singleUsers.vue"),
+  },
+  {
+    path: "/singleCareer/:id",
+    name: "singleCareer",
+    component: () => import("../views/singleCareer.vue"),
+    props: true,
   },
 ];
 

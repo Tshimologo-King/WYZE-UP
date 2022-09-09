@@ -19,28 +19,21 @@
             <div class="amount">12 of 12000</div>
             <div class="text">Careers</div>
           </span>
-          <div class="icon"></div>
-        </div>
-        <div class="card">
-          <span>
-            <div class="amount">2 of 12000</div>
-            <div class="text">Podcasts</div>
-          </span>
-          <div class="icon"></div>
+          <div class="icon">
+            <button @click="addCareer">➕</button>
+          </div>
         </div>
         <div class="card">
           <span>
             <div class="amount">10000</div>
             <div class="text">Users</div>
           </span>
-          <div class="icon"></div>
         </div>
         <div class="card">
           <span>
             <div class="amount">1000</div>
             <div class="text">Subscribers</div>
           </span>
-          <div class="icon"></div>
         </div>
       </div>
 
@@ -50,7 +43,7 @@
           <div v-if="careers" class="careers">
             <span v-for="career in careers" :key="career.idCareers">
               <router-link
-                :to="{ name: 'career', params: { id: career.idCareers } }"
+                :to="{ name: 'career', params: { results: career.idCareers } }"
               >
                 <div class="information">
                   <h3>{{ career.careerTitle }}</h3>
@@ -60,32 +53,14 @@
           </div>
         </div>
 
-        <!-- PODCASTS -->
-        <div class="card">
-          <div v-if="podcasts" class="podcasts">
-            <span v-for="podcast in podcasts" :key="podcast.idPodcasts">
-              <!-- <router-link
-                :to="{
-                  name: 'Podcasts',
-                  params: { id: podcast.idPodcasts },
-                }" 
-              >-->
-              <div class="information">
-                <h3>{{ podcast.podcastTitle }}</h3>
-              </div>
-              <!-- </router-link> -->
-            </span>
-          </div>
-        </div>
-
         <!-- REG USERS -->
         <div class="card">
           <div v-if="users" class="users">
             <span v-for="user in users" :key="user.idUsers">
-                <div class="information">
-                    <h3>{{user.userName}}</h3>
-                    <h4>{{user.userEmail}}</h4>
-                </div>
+              <div class="information">
+                <h3>{{ user.userName }}</h3>
+                <h4>{{ user.userEmail }}</h4>
+              </div>
             </span>
           </div>
         </div>
@@ -93,7 +68,23 @@
         <!-- SUBSCRIBED USERS -->
         <div class="card">
           <div v-if="subscribers" class="subscribedPeople">
-            <span></span>
+            <span
+              v-for="subscriber in subscribers"
+              :key="subscriber.idsubscriber"
+            >
+              <router-link
+                :to="{
+                  name: 'subscriber',
+                  params: { id: subscriber.idsubscriber },
+                }"
+              >
+                <div class="information">
+                  <h3>{{ subscriber.userName }}</h3>
+                  <h3>{{ subscriber.userEmail }}</h3>
+                  <h4>{{ subscriber.status }}</h4>
+                </div>
+              </router-link>
+            </span>
           </div>
         </div>
       </div>
@@ -106,9 +97,8 @@ export default {
   name: "users",
   methods: {},
   mounted() {
-    this.$store.dispatch("getUsers");
+    this.$store.dispatch("getUSERS");
     this.$store.dispatch("getCareers");
-    this.$store.dispatch("getPodcasts");
     this.$store.dispatch("getSubscribers");
   },
   computed: {
@@ -117,9 +107,6 @@ export default {
     },
     careers() {
       return this.$store.state.careers;
-    },
-    podcasts() {
-      return this.$store.state.podcasts;
     },
     subscribers() {
       return this.$store.state.subscribers;
@@ -206,7 +193,7 @@ body {
   height: 100%;
   padding: 25px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
 }
 .overall .card {
@@ -231,7 +218,7 @@ body {
   height: 100%;
   padding: 25px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
 }
 #adminVIEW .card {
@@ -241,12 +228,14 @@ body {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  height: 250px;
+  overflow-y: scroll;
 }
 
-.information{
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
+.information {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
 }
 
 .details {

@@ -15,16 +15,6 @@
           >
         </li>
         <li>
-          <router-link to="/Podcasts">
-            <font-awesome-icon icon="compass" />Podcast</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/CommunityTab">
-            <font-awesome-icon icon="compass" />Community Tab</router-link
-          >
-        </li>
-        <li>
           <router-link to="/Login">
             <font-awesome-icon icon="compass" />
             Login</router-link

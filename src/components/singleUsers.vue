@@ -1,7 +1,7 @@
 <template>
   <div v-if="user">
     <div v-for="user in users" :key="user.idUsers" class="user">
-      <div class="careerCards">
+      <div id="userCards">
         <h3>{{ user.userName }}</h3>
       </div>
     </div>
@@ -18,7 +18,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getUser", this.$route.params.id);
+    this.$store.dispatch("getUSER", this.$route.params.id);
   },
 };
 </script>
