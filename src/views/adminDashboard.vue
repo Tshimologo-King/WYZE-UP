@@ -42,13 +42,9 @@
         <div class="card">
           <div v-if="careers" class="careers">
             <span v-for="career in careers" :key="career.idCareers">
-              <router-link
-                :to="{ name: 'career', params: { results: career.idCareers } }"
-              >
                 <div class="information">
                   <h3>{{ career.careerTitle }}</h3>
                 </div>
-              </router-link>
             </span>
           </div>
         </div>
@@ -72,18 +68,12 @@
               v-for="subscriber in subscribers"
               :key="subscriber.idsubscriber"
             >
-              <router-link
-                :to="{
-                  name: 'subscriber',
-                  params: { id: subscriber.idsubscriber },
-                }"
-              >
+              
                 <div class="information">
                   <h3>{{ subscriber.userName }}</h3>
                   <h3>{{ subscriber.userEmail }}</h3>
                   <h4>{{ subscriber.status }}</h4>
                 </div>
-              </router-link>
             </span>
           </div>
         </div>

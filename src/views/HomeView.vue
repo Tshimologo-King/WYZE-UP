@@ -257,6 +257,7 @@ export default {};
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -268,6 +269,7 @@ export default {};
   /* height: 100vh; */
   overflow: hidden;
   padding: 20px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 #about .row {
   display: flex;
@@ -330,6 +332,7 @@ export default {};
   height: 100vh;
   overflow: hidden;
   padding: 20px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .wyzeup {
   display: flex;
@@ -374,6 +377,7 @@ export default {};
   overflow-y: scroll;
   padding: 20px;
   margin: 5px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 #partners img {
   height: 150px;
@@ -384,6 +388,7 @@ export default {};
 
 /* SUBSCRIPTION SECTION */
 #subscribe {
+  font-family: "Roboto Condensed", sans-serif;
   height: 50vh;
   overflow: hidden;
   padding: 20px;
@@ -423,14 +428,34 @@ export default {};
 
 /* CONTACT US SECTION */
 #comment {
-  height: 50vh;
+  height: 60vh;
   overflow: hidden;
   padding: 20px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
-.comment {
-  border: 1px solid black;
+.form {
   padding: 10px;
   display: flex;
+  flex-direction: column;
+  box-shadow: 1px 3px 4px black;
+  margin-top: 1rem;
+}
+.form input {
+  margin: 10px;
+  width: 50%;
+  margin-inline: auto;
+  padding: 10px;
+  border-radius: 20px;
+}
+.form label {
+  margin-inline: auto;
+}
+.form button {
+  width: 10%;
+  margin-inline: auto;
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 20px;
 }
 </style>
