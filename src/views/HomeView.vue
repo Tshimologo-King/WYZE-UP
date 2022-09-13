@@ -427,6 +427,7 @@ export default {};
   overflow: hidden;
   padding: 20px;
 }
+
 .comment {
   border: 1px solid black;
   padding: 10px;
