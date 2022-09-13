@@ -6,55 +6,67 @@
         <div class="row">
           <div class="col-md-6" id="bio">
             <img src="https://picsum.photos/200/300?random=1" />
-            <h4>Founder: Tshimologo King Mabena</h4>
-            <h4>Company: Kingdom</h4>
+            <div class="col-md-4 card">
+              <h4>Name:</h4>
+              <p>Tshimologo King Mabena</p>
+              <h4>Company:</h4>
+              <p>Kingdom Official Co.</p>
+              <h4>Motivational Quote:</h4>
+              <p>
+                Yesterday is History, Tomorrow is a Mystery, Today is a Gift
+                that's why they call it the Present
+              </p>
+            </div>
+            <div class="col-md-8 card2">
+              <h2>Who We Are</h2>
+              <p>
+                ORIGIN: Founded 2019, in Belhar Cape Town. We are the Youngins,
+                Families, Brothers, Sisters, Nieces, Nephews, Aunties, Uncles,
+                Fathers and Mothers of the future. From Drop-out to First Year
+                Developer. Tshimologo King Mabena had a striking concern about
+                his current state of affairs, being a student for 2 years in
+                University and not feeling a sense of achievement but a heavy
+                load of regret, and an urgent sense for the need of finding out
+                what he's truly passionate about. He started researching the
+                various causes of Youth Unemployment and found that there's a
+                high chance of an individual dropping out and due to lack of
+                information, passion is unrealised, pressures of fulfilling
+                family responsibilites.
+              </p>
+              <h2>Why We Do It</h2>
+              <p>
+                Since The Founder was a College Dropout, he saw that he is not
+                the only one that felt out of place within society, he wanted to
+                create environment where even dropout's and those that felt out
+                of place to able to navigate their different ambitions, where
+                every Youning has a chance to unlock their Unlimited Potential.
+                WYZE UP is for the Youngins of South Africa and neighbouring
+                countries alike. The African continent has been plight with lack
+                of information, lack of resources and tools that could enable
+                the youth to have more confidence in themselves and their
+                potential. At WYZE UP our mission is provide all Youngins with
+                the foundation of knowledge to succeed. Our Vision is to be the
+                center for the Youth to unlock their Unlimited Potenial across
+                Africa.
+              </p>
+              <h2>How We Do It</h2>
+              <p>
+                We dissect each and every industry and the various sectors
+                within them, and produce the relevant roles of the different
+                careers from Entry Level to Expert which enables the Youth to
+                have a basic roadmap as to how they can navigate towards their
+                Unlimited Potential. The Platform encompasses categories of
+                different industries, sectors, and careerpaths. A Community
+                where each individual can share their thoughts and their story,
+                a News Article section which is moderated for the use of
+                relevance to current events within the job sector. Podcast
+                interviews with industry professionals within each sector for
+                more insight of the operations and roles that they have on a
+                daily basis.
+              </p>
+            </div>
           </div>
-          <div class="col-md-6" id="description">
-            <h2>Who We Are</h2>
-            <p>
-              ORIGIN: Founded 2019, in Belhar Cape Town. We are the Youngins,
-              Families, Brothers, Sisters, Nieces, Nephews, Aunties, Uncles,
-              Fathers and Mothers of the future. From Drop-out to First Year
-              Developer. Tshimologo King Mabena had a striking concern about his
-              current state of affairs, being a student for 2 years in
-              University and not feeling a sense of achievement but a heavy load
-              of regret, and an urgent sense for the need of finding out what
-              he's truly passionate about. He started researching the various
-              causes of Youth Unemployment and found that there's a high chance
-              of an individual dropping out and due to lack of information,
-              passion is unrealised, pressures of fulfilling family
-              responsibilites.
-            </p>
-            <h2>Why We Do It</h2>
-            <p>
-              Since The Founder was a College Dropout, he saw that he is not the
-              only one that felt out of place within society, he wanted to
-              create environment where even dropout's and those that felt out of
-              place to able to navigate their different ambitions, where every
-              Youning has a chance to unlock their Unlimited Potential. WYZE UP
-              is for the Youngins of South Africa and neighbouring countries
-              alike. The African continent has been plight with lack of
-              information, lack of resources and tools that could enable the
-              youth to have more confidence in themselves and their potential.
-              At WYZE UP our mission is provide all Youngins with the foundation
-              of knowledge to succeed. Our Vision is to be the center for the
-              Youth to unlock their Unlimited Potenial across Africa.
-            </p>
-            <h2>How We Do It</h2>
-            <p>
-              We dissect each and every industry and the various sectors within
-              them, and produce the relevant roles of the different careers from
-              Entry Level to Expert which enables the Youth to have a basic
-              roadmap as to how they can navigate towards their Unlimited
-              Potential. The Platform encompasses categories of different
-              industries, sectors, and careerpaths. A Community where each
-              individual can share their thoughts and their story, a News
-              Article section which is moderated for the use of relevance to
-              current events within the job sector. Podcast interviews with
-              industry professionals within each sector for more insight of the
-              operations and roles that they have on a daily basis.
-            </p>
-          </div>
+          <div class="col-md-6" id="description"></div>
         </div>
       </div>
     </section>
@@ -225,7 +237,18 @@
       </div>
     </section>
 
-    <section id="comment">contact form</section>
+    <section id="comment">
+      <h2>contact form</h2>
+      <form @submit.prevent="submit" class="form">
+        <label for="name">Name</label>
+        <input type="text" />
+        <label for="email">Email</label>
+        <input type="text" />
+        <label for="enquiry">Enquiry</label>
+        <input type="text" />
+        <button @click="submit">submit</button>
+      </form>
+    </section>
   </div>
 </template>
 
@@ -242,7 +265,7 @@ export default {};
 
 /* ABOUT SECTION */
 #about {
-  height: 100vh;
+  /* height: 100vh; */
   overflow: hidden;
   padding: 20px;
 }
@@ -256,12 +279,33 @@ export default {};
   width: 100%;
   border: 1px solid black;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   padding: 20px;
 }
 
 #bio img {
-  height: 400px;
+  height: 100%;
+  width: 250px;
+  margin: 5px;
+}
+
+#bio .card {
+  padding: 20px;
+  margin: 5px;
+}
+#bio .card p {
+  margin-bottom: 1rem;
+}
+#bio .card2 {
+  padding: 20px;
+  margin: 5px;
+}
+#bio .card2 h2 {
+  font-size: 16px;
+}
+#bio .card2 p {
+  font-size: 14px;
+  margin-bottom: 1rem;
 }
 .aboutus {
   display: flex;
@@ -383,31 +427,9 @@ export default {};
   overflow: hidden;
   padding: 20px;
 }
-@media only screen and (max-width:1200px){
-  #about{
-    display: flex;
-  }
-}
-@media only screen and (max-width: 900px) {
-  .aboutus h1 {
-    margin-inline: auto;
-  }
-  #about {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  #bio{
-    overflow: hidden;
-  }
-  #bio img {
-    width: 450px;
-    height: 450px;
-    margin-inline: auto;
-  }
-  #bio h4 {
-    font-size: 16px;
-    margin-inline: auto;
-  }
+.comment {
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
 }
 </style>
