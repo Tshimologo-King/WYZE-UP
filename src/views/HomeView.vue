@@ -387,6 +387,12 @@ export default {};
   display: flex;
   margin-inline: auto;
 }
+@media screen and (max-width: 1200px) {
+  #accp {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}
 @media screen and (max-width: 800px) {
   #accp {
     height: 100%;
@@ -414,6 +420,11 @@ export default {};
   width: 150px;
   padding: 10px;
   aspect-ratio: 1;
+}
+@media screen and (max-width: 800px) {
+  #partners img {
+    max-width: 100%;
+  }
 }
 
 /* SUBSCRIPTION SECTION */
@@ -455,6 +466,14 @@ export default {};
   border: 0.5px solid black;
   color: blue;
 }
+@media screen and (max-width: 600px) {
+  #subscribe {
+    height: 100%;
+  }
+  #subscribe .card {
+    height: 100%;
+  }
+}
 
 /* CONTACT US SECTION */
 #comment {
@@ -487,5 +506,10 @@ export default {};
   margin-top: 1rem;
   padding: 10px;
   border-radius: 20px;
+}
+@media screen and (max-width: 600px) {
+  .form button {
+    width: 15%;
+  }
 }
 </style>
