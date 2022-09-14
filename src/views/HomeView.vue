@@ -327,6 +327,22 @@ export default {};
   padding: 10px;
 }
 
+@media screen and (max-width: 900px) {
+  #bio {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #bio img {
+    max-width: 400px;
+    max-height: 400px;
+  }
+}
+@media screen and (max-width: 600px) {
+  #bio {
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+}
 /* ACCP SECTION */
 #accp {
   height: 100vh;
@@ -345,6 +361,7 @@ export default {};
   justify-content: space-evenly;
   align-content: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 #accp #careers,
 #community,
@@ -369,6 +386,19 @@ export default {};
 #podcasts img {
   display: flex;
   margin-inline: auto;
+}
+@media screen and (max-width: 800px) {
+  #accp {
+    height: 100%;
+  }
+  #accp img {
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  #accp h2 {
+    font-size: 24px;
+  }
 }
 
 /* PARTNERSHIP SECTION */
@@ -428,7 +458,7 @@ export default {};
 
 /* CONTACT US SECTION */
 #comment {
-  height: 60vh;
+  height: 100%;
   overflow: hidden;
   padding: 20px;
   font-family: "Roboto Condensed", sans-serif;
