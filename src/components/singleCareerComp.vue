@@ -2,7 +2,7 @@
   <div v-if="career">
     <div v-for="career in careers" :key="career.idCareers" class="career">
       <router-link
-        :to="{ name: 'singleCareerComp', params: { id: careers.idCareers } }"
+        :to="{ name: 'singleCareer', params: { id: careers.idCareers } }"
       >
         <div id="careerCards">
           <div class="newPost">
